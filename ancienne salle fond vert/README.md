@@ -1,12 +1,10 @@
-# 🚧🚧 SalleFondVert_Controller 🚧🚧
+# SalleFondVert_Controller
 
 **On how to use with almost full autonomy the light fixtures controller in the green screen studio, going tablet (OSC) > computer (Chataigne) > light fixtures (DMX).**
 
 ![Plan de fire'](./images/planFeu.png)
 
-The complete DMX patch of the current light fixtures installation of the green screen studio, with each parameter of the each fixture DMX adress can be found in the pdf `complete light patch`.
-
-<details> <summary> How to use the fixtures control tablet </summary>
+## How to use the fixtures control tablet
 
 ### A. Interface
 
@@ -94,8 +92,6 @@ Il n'y a normalement pas besoin de modifier les paramètres OSC dans Chataigne, 
 On peux vérifier qu'on reçoit bien des messages OSC dans la partie Logger en bas à droite de l'interface Chataigne. Ici on reçoit le message /id du bouton `Scan` de la première interface.
 
 ![Plan de fire'](./images/screen8.png)
-
-</details>
 
 ## Créer une automation de contrôle dans Chataigne
 
