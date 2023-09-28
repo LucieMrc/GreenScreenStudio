@@ -1,157 +1,178 @@
 # 🚧🚧 SalleFondVert_Controller 🚧🚧
 
-**On how to use with almost full autonomy the light fixtures controller in the green screen studio, going tablet (OSC) > computer (Chataigne) > light fixtures (DMX).**
+**On how to use with almost full autonomy the light fixtures with Chataigne.**
 
 ![Plan de fire'](./images/planFeu.png)
 
 The complete DMX patch of the current light fixtures installation of the green screen studio, with each parameter of the each fixture DMX adress can be found in the pdf `complete light patch`.
 
-<details> <summary> How to use the fixtures control tablet </summary>
+First step : turn on the light fixtures with the switch "prises" on the right from the door.
 
-### A. Interface
+## Creating a timeline animation in Chataigne
 
-The connexion interface :
+The timeline allowing to create animation sequences is in the lower part of the interface :
 
-- the `Scan` button search for OSC clients (which send the message /id,
-- The `Connect` button connect when a client is found,
-- The `Broadcast` button send OSC message to every client on the network.
+!['screen sequence'](./images/screen20.png)
 
-The easiest use is to just click on `Scan` then `Broadcast`.
+Click on the gree ➕ bouton in `Sequences` part.
 
-![Plan de fire'](./images/screen1.jpg)
+!['screen sequence'](./images/screen21.png)
 
-To control the front moving head projectors (101 and 121), middle ones (141 and 161) and the back ones (181 and 201) :
+This sequence is a timeline, on which you can have multiple parameters automations to be read as the same time.
 
-- The color selection pad, sending R, G and B values,
-- The white value slider,
-- The zoom slider, which allow to choose the focus/zoom of the projector,
-- The pan/tilt pad, which allow to orient the projector,
-- The dimmer slider to choose the brightness.
+Click on the gree ➕ bouton in `Sequence Editor` part to create the first automation.
 
-![Plan de fire'](./images/screen2.jpg)
+!['screen sequence'](./images/screen22.png)
 
-Les contrôles des PAR à l'avant (51, 61, 71 et 81) et des PAR du milieu (11, 21, 31 et 41) :
+You can choose the automation type :
+- `Trigger` will trigger events with no transition, by sending a value at a given moment on the timeline. It can be use for example to turn off all the fixtures at the same time.
+- `Mapping` allows you to create a curve based animation. It can be used for example to modify the brightness following a curve or to slowly rotate a fixture.
+- `Mapping 2D` is like Mapping, but in 2D, and allows you to create a 2D path based animation. More infos [here](https://bkuperberg.gitbook.io/chataigne-docs/the-time-machine-sequences/mapping-layer).
+- `Audio` allows you to sync sound files to the sequence, but you need a sound card. It can be used for example to have sounds playing at the same time as animations.
+- `Color` allows you to animation colors over time. It can be used for example to create colors interpolations of the fixtures.
+- `Sequences` allows you to play multiple sequences at the same time or on the same timeline. You can for example create multiples animations sequences and assemble them on the timeline.
 
-Les PAR de l'avant sont des Warm White (blanc chaud) dont on ne contrôle que le dimmer (luminosité), une par une ou toutes en même temps avec le master, avec des sliders.
+!['screen sequence'](./images/screen23.png)
 
-Les PAR du milieu sont des RGBW (Red Green Blue White) dont on contrôle la luminosité de tous avec le slider master, et les paramètres :
-- Le sélecteur de couleurs qui envoit les messages R, G et B,
-- Le slider du dimmer pour choisir la luminosité,
-- Le slider du blanc.
 
-![Plan de fire'](./images/screen5.jpg)
+### Mapping a value
 
-Les presets :
+**1 : Creating the mapping**
 
-- Le Blackout pour tout éteindre,
-- Les PAR milieu : un réglage Warm pour une lumière harmonieuse chaude et un Cold pour une lumière harmonieuse froide.
-- Le Greenscreen pour une lumière uniforme sur le fond vert pour faire du chromakey.
+Choose `Mapping`, and as we work with DMX we can start by modifying the `Range` (from 0 to 1) to 0 to 255. 
+If you do it after having points on the timeline, you need first to choose `Range Remap Mode` > `Proportional` so the points are repositionned proportionally in the new range.
 
-![Plan de fire'](./images/screen6.jpg)
+!['screen sequence'](./images/screen24.png)
 
-### B. Mise en route
+**2 : Record the curve**
 
-Ouvrir l'application `osc_controller_fondvert_android` sur la tablette.
+There is two method to place points to create a curve in the sequence. The first method is to **draw directly on the timeline** of the Mapping, by holding `ctrl`+`shift` and dragging the mouse across while drawing your curve.
 
-Allumer l'ordinateur, ouvrir le patch Chataigne, et vérifier la connexion de la tablette à Chataigne.
+!['screen sequence'](./images/screen25.png)
 
-L'ordinateur de la salle fond vert doit être connecté sur le même réseau wifi que la tablette afin qu'ils puissent communiquer en OSC, le plus simple est d'utiliser le réseau du HUAWEI.
+When you release the click, the yellow drawing becomes a curve with editable points for the finalise the curve.
 
-Il n'y a normalement pas besoin de modifier les paramètres OSC dans Chataigne, mais on peux vérifier qu'on détecte bien une adresse IP en 192.168.x.x (ici : 192.168.8.107) dans la partie OSC Input.
+!['screen sequence'](./images/screen26.png)
 
-![Plan de fire'](./images/screen7.png)
+You can also use a midi controller (see [midi set up](###-Set-up)), and **create the curve by recording midi values**.
 
-On peux aussi vérifier qu'on reçoit bien des messages OSC dans la partie Logger en bas à droite de l'interface Chataigne. Ici on reçoit le message /id du bouton `Scan` de la première interface.
+To do so, check the inspector in the top right part of the screen.
 
-![Plan de fire'](./images/screen8.png)
+!['screen sequence'](./images/screen28.png)
 
-## Utilisation de l'interface desktop
+In the `Recorder` part, click on `Learn` and touch one of the buttons/sliders/knobs of the midi controller so Chataigne detect the movement of midi values and assign it to the `Recorder`.
 
-### A. Interface
+!['screen sequence'](./images/screen27.png)
 
-Même principe que pour l'interface tablette.
+Then, check `Arm` in the `Recorder` or in the timeline, start playing the timeline and touch the same button/slider/knob of the midi controller to create a curve with the values received.
 
-Une première interface avec les réglages de connexion :
+!['screen sequence'](./images/screen29.png)
 
-![Plan de fire'](./images/screen9.png)
+The curve is red during the recording, and becomes an editable curve when you pause the timeline.
 
-Une seconde interface avec les contrôles de 6 lyres :
+!['screen sequence'](./images/screen30.png)
 
-![Plan de fire'](./images/screen10.png)
+⚠️ The midi values received will be between 0 and 127, so you should put the `Range` between 0 and 127, record with midi, then choose `Range Remap Mode` > `Proportional`, and change the `Range` to 0 and 255.
 
-Une dernière interface avec les controles des 8 PAR, les 4 WW qui éclairent le fond vert et les 4 RGBW du milieu, ainsi que les presets :
+**3 : Output the mapping**
 
-![Plan de fire'](./images/screen11.png)
+In the inspector, you can add one ou multiple outputs to the curve. Every automation/sequences can be assigned to multiples parameters and DMX channels for example.
 
-### B. Mise en route
+!['screen sequence'](./images/screen31.png)
 
-Ouvrir le programme Processing `osc_controller_interface`, ainsi que le patch Chataigne.
+Here, there is two way of assigning the curve to the white value of the top left lyre fixture : either by assigning it directly to the DMX channel, either by assigning it to the Custom Variable that I created for this parameter.
 
-Pas besoin de se poser des questions de réseau wifi étant donné que Chataigne et Processing communiquent directement en local en OSC.
+!['screen sequence'](./images/screen32.png)
 
-Il n'y a normalement pas besoin de modifier les paramètres OSC dans Chataigne, qui sont en adéquation avec ceux écrit dans le code Processing.
+### Color animation
 
-On peux vérifier qu'on reçoit bien des messages OSC dans la partie Logger en bas à droite de l'interface Chataigne. Ici on reçoit le message /id du bouton `Scan` de la première interface.
+**1 : Creating the color animation**
 
-![Plan de fire'](./images/screen8.png)
+By choosing `Color` as a sequence, the default color on the timeline is red.
 
-</details>
+!['screen sequence'](./images/screen33.png)
 
-## Créer une automation de contrôle dans Chataigne
+To add colors, you just double-click on the timeline to add editable points.
 
-## Le midi-learn dans Chataigne
+!['screen sequence'](./images/screen34.png)
 
-Pour contrôler certains paramètres avec un controleur MIDI, en faisant automatiquement l'attribution de la valeur midi au paramètre à modifier.
+You can change the color of the point by clicking it, opening the inspector (top right) and double-clicking on the square on the very top right :
 
-### La mise en place
+!['screen sequence'](./images/screen35.png)
 
-J'utilise ici un Midimix, avec 24 potards, 9 sliders et 20 boutons.
+You can then choose the exact color, opacity, and hex code of the color if needed.
 
-Pour utiliser un controleur midi, on ajoute un module MIDI dans la partie Modules à gauche de l'interface de Madmapper.
+!['screen sequence'](./images/screen36.png)
+
+In the inspector, you can also change the exact position of the color point on the timeline with `Time`, and the transition with the next color with `Interpolation` (Linear = gradient, None = no transition).
+
+!['screen sequence'](./images/screen37.png)
+
+**2 : Output the color animation**
+
+In the `Outputs` part of the inspector, you can assign the color animation to the light fixtures in two ways :
+
+- Either directly in DMX, with `Set Color` and choosing the start channel of the color (the channel of the red value, the next ones will alway be the green value then the blue value). Here it's 109 for the top left fixture :
+
+!['screen sequence'](./images/screen38.png)
+
+- Either by assigning the Custom Variables of each color values :
+
+!['screen sequence'](./images/screen39.png)
+
+To do so, in the `Value` line, you need to click on the little link 🔗 symbol and choose the corresponding color.
+
+!['screen sequence'](./images/screen40.png)
+
+
+## Midi-learn in Chataigne
+
+To change some parameters with a midi controller, by automatically pairing the midi value to the parameter.
+
+### Set up
+
+I am using a Midimix, with 24 knobs, 20 buttons and 9 sliders.
+
+To use a midi controller, we add a MIDI module in the modules part on the left of the interface.
 
 ![Plan de fire'](./images/screen12.png)
 
-Dans l'inspecteur du module, on peux alors choisir notre controleur midi.
+In the inspector of the module, we can choose our midi controller.
 
 ![Plan de fire'](./images/screen13.png)
 
-Lorsque que `Auto Add` est coché, et `Is Connected` est activé, on voit les valeurs changer en temps réel dans la partie Values de l'inspecteur.
+When `Auto Add` is checked, and `Is Connected` is active, we can see the values changing in real time in the Values part of the inspector.
 
 ![Plan de fire'](./images/screen14.png)
 
-### Ajouter le contrôle
+### Adding the 
 
-Pour assigner une valeur midi à un channel DMX/paramètre, il suffit de cliquer sur le mapping du paramètre. Ici, le dimmmer du projecteur PAR WW face :
+To pair a midi value with a DMX channel or a parameter, you need to click on the mapping of the parameter. Here, the dimmer of the PAR WW fixture :
 
 ![Plan de fire'](./images/screen15.png)
 
-Dans la partie Inputs de l'inspecteur, on a déjà l'input d'OSC qui récupère les valeurs de l'interface Processing.
-
-Il suffit de créer un nouvel input en cliquant sur le bouton ➕ en haut à droite de la partie Inputs.
+You create a new input by clicking on the ➕ button on the top right of the Inputs part.
 
 ![Plan de fire'](./images/screen16.png)
 
-En cliquant sur le carré `Learn` à droite puis en touchant le controleur midi pour modifier une valeur, la valeur midi s'attribue automatiquement à la valeur du mapping et donc du paramètre (ici la valeur de CC19).
+By checking `Learn` on the right, then touching one of the buttons/sliders/knobs of the midi controller, the midi value is automatically paired to the mapping value of the parameter (here the value of CC19).
 
 ![Plan de fire'](./images/screen17.png)
 
-Néanmoins, le controleur midi envoit des valeurs de 0 à 127, et le DMX reçoit des valeurs de 0 à 255. 
+⚠️ The midi controller sends values between 0 to 127, and the DMX receive values between 0 and 255. If we don't remap the values, each parameters will be "half-off" : sending max brightness from the midi controller will only result in half brightness on the fixture, the pan would only be half of the axis, and so on.
 
-<!--Si on ne remapppe pas la valeur reçue en midi pour qu'elle aille de 0 à 255, -->
-
-Il faut donc remapper les valeurs de l'input pour qu'elle sorte en output en allant de 0 à 255.
-Pour cela, on ajoute un filtre en cliquant sur le bouton ➕ de la partie Filters, Remap > Remap.
+So we need to remap the values from the input so the output can be between 0 and 255.
+To do so, we add a filter by clicking on the ➕ of the Filters part, and we do `Remap` > `Remap`.
 
 ![Plan de fire'](./images/screen18.png)
 
-On assigne la plage d'entrée allant de 0 à 127 et la plage de sortie allant de 0 à 255.
+We set the input range to 0 and 127, and the output range to 0 and 255.
 
 ![Plan de fire'](./images/screen19.png)
 
-Attention, en ajoutant le contrôle MIDI en input par dessus le contrôle OSC, le contrôle MIDI prend la priorité et la modification de la valeur OSC ne changera plus le paramètre en sortie.
+⚠️ The midi control should be the first input in the inputs list if there is multiple inputs and you want the midi control to have priority over the others.
 
-De la même façon, le fait d'ajouter un filtre de remappage va modifier la valeur OSC si on veux l'utiliser, étant donné qu'elle arrive déjà en 0 à 255. On peux désactiver le filtre en cliquant sur le bouton éteindre rouge en haut à droite de la partie `Filters`.
 
-## Pour aller + loin
+## To go further
 
-Le [tuto introduction à Chataigne](https://github.com/LucieMrc/Chataigne_2spi).
+The [intro tuto to Chataigne (FR)](https://github.com/LucieMrc/Chataigne_2spi).
