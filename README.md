@@ -1,4 +1,4 @@
-# 🚧🚧 SalleFondVert_Controller 🚧🚧
+# Green Screen Studio lighting
 
 **On how to use with almost full autonomy the light fixtures with Chataigne.**
 
