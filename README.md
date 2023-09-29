@@ -96,7 +96,7 @@ To add colors, you just double-click on the timeline to add editable points.
 
 !['screen sequence'](./images/screen34.png)
 
-You can change the color of the point by clicking it, opening the inspector (top right) and double-clicking on the square on the very top right :
+You can change the color of the point either by double-clicking on it, or by clicking it, opening the inspector (top right) and double-clicking on the square on the very top right :
 
 !['screen sequence'](./images/screen35.png)
 
