@@ -6,6 +6,8 @@
 
 The complete DMX patch of the current light fixtures installation of the green screen studio, with each parameter of the each fixture DMX adress can be found in the pdf `complete light patch`.
 
+The Chataigne project for the green screen studio is either "fondvert_TD_sept24.noisette" for Chataigne 1.9.14 or higher, or "fondvert_TD_oct23.noisette" for Chataigne 1.9.13 or lower.
+
 First step : turn on the light fixtures with the switch "prises" on the right from the door.
 
 ## Creating a timeline animation in Chataigne
