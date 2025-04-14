@@ -83,10 +83,12 @@ In the inspector, you can add one ou multiple outputs to the curve. Every automa
 !['screen sequence'](./images/screen31.png)
 
 Here, there is two way of assigning the curve to the white value of the top left lyre fixture : 
-- Either by assigning it directly to the DMX channel (here : 112).
-- Or by assigning it to the Custom Variable that I created for this parameter (here : `Custom Variables` > `Set Value`, then the Target is `lyre top gauche` > `White`).
+- Either by assigning it directly to the DMX channel (here : 107) and the default Universe.
+- Or by assigning it to the Custom Variable that I created for this parameter (here : `Custom Variables` > `Set Value`, then the Target is `lyre top gauche` > `Dimmer`).
 
 !['screen sequence'](./images/screen32.png)
+
+Ici je choisis le Channel "107" pour le dimmer de la lyre top gauche, et l'Universe par défaut.
 
 ### Color animation
 
