@@ -29,7 +29,7 @@ Click on the gree ➕ bouton in `Sequence Editor` part to create the first autom
 You can choose the automation type :
 - `Trigger` will trigger events with no transition, by sending a value at a given moment on the timeline. It can be use for example to turn off all the fixtures at the same time.
 - `Mapping` allows you to create a curve based animation. It can be used for example to modify the brightness following a curve or to slowly rotate a fixture.
-- `Mapping 2D` is like Mapping, but in 2D, and allows you to create a 2D path based animation. More infos [here](https://bkuperberg.gitbook.io/chataigne-docs/the-time-machine-sequences/mapping-layer).
+- `Mapping 2D` is like Mapping, but in 2D, and allows you to create a 2D path based animation. More infos [here](https://benkuper.notion.site/Mapping-Layer-4eeb78cae8174bf2a0d400bb936550b0).
 - `Audio` allows you to sync sound files to the sequence, but you need a sound card. It can be used for example to have sounds playing at the same time as animations.
 - `Color` allows you to animation colors over time. It can be used for example to create colors interpolations of the fixtures.
 - `Sequences` allows you to play multiple sequences at the same time or on the same timeline. You can for example create multiples animations sequences and assemble them on the timeline.
@@ -165,7 +165,7 @@ When `Auto Add` is checked, and `Is Connected` is active, we can see the values 
 
 ![Plan de fire'](./images/screen14.png)
 
-### Adding the 
+### Adding the control
 
 To pair a midi value with a DMX channel or a parameter, you need to click on the mapping of the parameter. Here, the dimmer of the PAR WW fixture :
 
@@ -195,4 +195,6 @@ We set the input range to 0 and 127, and the output range to 0 and 255.
 
 ## To go further
 
-The [intro tuto to Chataigne (FR)](https://github.com/LucieMrc/Chataigne_2spi).
+- Chataigne [official documentation](https://benkuper.notion.site/The-Amazing-Chataigne-Documentation-079bd5a0b7e648bbbfe34c3c869a3985)
+
+ - The [intro tuto to Chataigne (FR)](https://github.com/LucieMrc/Chataigne_2spi).
